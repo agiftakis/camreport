@@ -1,21 +1,24 @@
 mqtt:
   enabled: false
-
 detectors:
-  cpu1:
-    type: cpu
-    num_threads: 3
-
+  onnx:
+    type: onnx
+model:
+  model_type: yolo-generic
+  width: 320
+  height: 320
+  input_tensor: nchw
+  input_dtype: float
+  path: /config/model_cache/yolov9-s-320.onnx
+  labelmap_path: /labelmap/coco-80.txt
 ffmpeg:
   hwaccel_args: preset-nvidia
-
 go2rtc:
   streams:
     testcam:
       - ffmpeg:virtual?video&size=1280x720#video=h264
     phone:
       - ffmpeg:http://10.1.10.75:8080/video#video=h264
-
 cameras:
   testcam:
     enabled: true
@@ -35,7 +38,6 @@ cameras:
       enabled: true
       continuous:
         days: 1
-
   phone:
     enabled: true
     ffmpeg:
@@ -59,5 +61,4 @@ cameras:
         days: 1
     snapshots:
       enabled: true
-
 version: 0.18-0

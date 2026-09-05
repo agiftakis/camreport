@@ -1,8 +1,6 @@
-# Frigate runtime data - never commit
-frigate/config/frigate.db*
-frigate/config/model_cache/
-frigate/config/*.log
-frigate/config/.exports/
+# Frigate runtime data - ignore everything in config/ except config.yml
+frigate/config/*
+!frigate/config/config.yml
 
 # secrets (camera passwords go in .env, referenced from config.yml as {FRIGATE_RTSP_PASSWORD})
 .env

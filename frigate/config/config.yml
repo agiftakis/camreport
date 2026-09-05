@@ -12,7 +12,7 @@ ffmpeg:
 go2rtc:
   streams:
     testcam:
-      - "ffmpeg:virtual?video&size=1280x720#video=h264"
+      - ffmpeg:virtual?video&size=1280x720#video=h264
 
 cameras:
   testcam:
@@ -33,3 +33,4 @@ cameras:
       enabled: true
       continuous:
         days: 1
+version: 0.18-0

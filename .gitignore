@@ -1,0 +1,18 @@
+# Frigate runtime data - never commit
+frigate/config/frigate.db*
+frigate/config/model_cache/
+frigate/config/*.log
+frigate/config/.exports/
+
+# secrets (camera passwords go in .env, referenced from config.yml as {FRIGATE_RTSP_PASSWORD})
+.env
+*.env
+
+# editor / OS
+.vscode/
+Thumbs.db
+desktop.ini
+
+# Next.js app (added later)
+node_modules/
+.next/

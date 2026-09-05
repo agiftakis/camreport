@@ -1,0 +1,35 @@
+mqtt:
+  enabled: false
+
+detectors:
+  cpu1:
+    type: cpu
+    num_threads: 3
+
+ffmpeg:
+  hwaccel_args: preset-nvidia
+
+go2rtc:
+  streams:
+    testcam:
+      - "ffmpeg:virtual?video&size=1280x720#video=h264"
+
+cameras:
+  testcam:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/testcam
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+            - record
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 5
+    record:
+      enabled: true
+      continuous:
+        days: 1

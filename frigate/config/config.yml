@@ -13,6 +13,8 @@ go2rtc:
   streams:
     testcam:
       - ffmpeg:virtual?video&size=1280x720#video=h264
+    phone:
+      - ffmpeg:http://10.1.10.75:8080/video#video=h264
 
 cameras:
   testcam:
@@ -33,4 +35,29 @@ cameras:
       enabled: true
       continuous:
         days: 1
+
+  phone:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/phone
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+            - record
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 5
+    objects:
+      track:
+        - person
+    record:
+      enabled: true
+      continuous:
+        days: 1
+    snapshots:
+      enabled: true
+
 version: 0.18-0

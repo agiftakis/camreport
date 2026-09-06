@@ -24,6 +24,7 @@ genai:
       keep_alive: -1
       options:
         num_ctx: 16384
+        num_predict: 250
 objects:
   genai:
     prompt: >-
@@ -40,7 +41,7 @@ objects:
       person: >-
         You are writing a factual observation for a security incident log from
         the camera named {camera}. The images are frames from one recording, in
-        time order from first to last. In plain text, maximum ten sentences,
+        time order from first to last. In plain text, maximum five sentences,
         no markdown or lists: state how many people are visible, where the main
         person is in the frame, their approximate clothing colours, and how
         their body, arms and hands move across the frames. If the arms or hands

@@ -13,6 +13,17 @@ model:
   labelmap_path: /labelmap/coco-80.txt
 ffmpeg:
   hwaccel_args: preset-nvidia
+genai:
+  nitro_ollama:
+    provider: ollama
+    base_url: http://host.docker.internal:11434
+    model: qwen3-vl:4b
+    roles:
+      - descriptions
+    provider_options:
+      keep_alive: -1
+      options:
+        num_ctx: 8192
 go2rtc:
   streams:
     testcam:
@@ -55,6 +66,11 @@ cameras:
     objects:
       track:
         - person
+      genai:
+        enabled: true
+        use_snapshot: true
+        objects:
+          - person
     record:
       enabled: true
       continuous:

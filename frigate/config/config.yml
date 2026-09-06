@@ -23,28 +23,31 @@ genai:
     provider_options:
       keep_alive: -1
       options:
-        num_ctx: 8192
+        num_ctx: 16384
 objects:
   genai:
     prompt: >-
       You are writing a factual observation for a security incident log from the
-      camera named {camera}. Describe only what is visible in the images: the
-      {label}, its position in the frame, and what it is physically doing.
-      Rules: plain text only, no markdown, no bullet points, no headings.
-      Maximum three sentences. Do not guess intent, purpose, emotion, or what
-      may happen next. Do not describe the room or background unless the
-      {label} is interacting with it. If something is unclear, say it is unclear
-      rather than guessing.
+      camera named {camera}. The images are frames from one recording, in time
+      order from first to last. Describe only what is visible: the {label},
+      where it is in the frame, and how its position and posture change from the
+      first frame to the last. Rules: plain text only, no markdown, no bullet
+      points, no headings. Maximum three sentences. Do not guess intent,
+      purpose, emotion, or what may happen next. Do not describe the room or
+      background unless the {label} is interacting with it. If something is
+      unclear, say it is unclear rather than guessing.
     object_prompts:
       person: >-
         You are writing a factual observation for a security incident log from
-        the camera named {camera}. In plain text, maximum three sentences, no
-        markdown or lists: state how many people are visible, where the main
-        person is in the frame, their approximate clothing colours, and what
-        they are physically doing (walking, standing, carrying an item,
-        touching an object). Do not guess intent, purpose, mood, or what they
-        might do next. Do not describe the background. If the person is
-        partially out of frame or blurred, say so.
+        the camera named {camera}. The images are frames from one recording, in
+        time order from first to last. In plain text, maximum ten sentences,
+        no markdown or lists: state how many people are visible, where the main
+        person is in the frame, their approximate clothing colours, and how
+        their body, arms and hands move across the frames. If the arms or hands
+        move rapidly, repeatedly, or are extended toward the camera or toward
+        another person, state that plainly. Do not guess intent, purpose, mood,
+        or what they might do next. Do not describe the background. If the
+        person is partially out of frame or blurred, say so.
 go2rtc:
   streams:
     testcam:
@@ -89,7 +92,7 @@ cameras:
         - person
       genai:
         enabled: true
-        use_snapshot: true
+        use_snapshot: false
         objects:
           - person
     record:

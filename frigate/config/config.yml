@@ -24,6 +24,27 @@ genai:
       keep_alive: -1
       options:
         num_ctx: 8192
+objects:
+  genai:
+    prompt: >-
+      You are writing a factual observation for a security incident log from the
+      camera named {camera}. Describe only what is visible in the images: the
+      {label}, its position in the frame, and what it is physically doing.
+      Rules: plain text only, no markdown, no bullet points, no headings.
+      Maximum three sentences. Do not guess intent, purpose, emotion, or what
+      may happen next. Do not describe the room or background unless the
+      {label} is interacting with it. If something is unclear, say it is unclear
+      rather than guessing.
+    object_prompts:
+      person: >-
+        You are writing a factual observation for a security incident log from
+        the camera named {camera}. In plain text, maximum three sentences, no
+        markdown or lists: state how many people are visible, where the main
+        person is in the frame, their approximate clothing colours, and what
+        they are physically doing (walking, standing, carrying an item,
+        touching an object). Do not guess intent, purpose, mood, or what they
+        might do next. Do not describe the background. If the person is
+        partially out of frame or blurred, say so.
 go2rtc:
   streams:
     testcam:

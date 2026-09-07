@@ -17,7 +17,7 @@ genai:
   nitro_ollama:
     provider: ollama
     base_url: http://host.docker.internal:11434
-    model: qwen3-vl:4b
+    model: qwen3-vl:4b-instruct
     roles:
       - descriptions
     provider_options:
@@ -33,7 +33,7 @@ objects:
       order from first to last. Describe only what is visible: the {label},
       where it is in the frame, and how its position and posture change from the
       first frame to the last. Rules: plain text only, no markdown, no bullet
-      points, no headings. Maximum three sentences. Do not guess intent,
+      points, no headings. Maximum five sentences. Do not guess intent,
       purpose, emotion, or what may happen next. Do not describe the room or
       background unless the {label} is interacting with it. If something is
       unclear, say it is unclear rather than guessing.
@@ -54,7 +54,7 @@ go2rtc:
     testcam:
       - ffmpeg:virtual?video&size=1280x720#video=h264
     phone:
-      - ffmpeg:http://10.1.10.75:8080/video#video=h264
+      - ffmpeg:http://10.81.80.249:8080/video#video=h264
 cameras:
   testcam:
     enabled: true

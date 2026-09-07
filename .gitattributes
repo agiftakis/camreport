@@ -1,0 +1,19 @@
+# Line endings: store LF in the repo, convert on checkout as needed
+* text=auto
+# Files Linux/Docker will read: always LF, even on Windows checkout
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.env text eol=lf
+Dockerfile text eol=lf
+# Windows-only scripts: keep CRLF
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+# Binaries: never touch line endings
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.mp4 binary
+*.db binary
+*.onnx binary
